@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Avatar from './../img/avatar.png'
 import { Link } from 'react-router-dom'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { app } from './firebase.config'
+import { app } from '../firebase.config'
 import { actionType } from '../context/reducer'
 import { useStateValue } from '../context/StateProvider'
 
@@ -18,7 +18,7 @@ const Header = () => {
 
   const login = async () => {
     if (!user) {
-      const { user: { refreshToken, providerData } } = await signInWithPopup(firebaseAuth, provider);
+      const { user: { providerData } } = await signInWithPopup(firebaseAuth, provider);
       dispatch({
         type: actionType.SET_USER,
         user: providerData[0]
